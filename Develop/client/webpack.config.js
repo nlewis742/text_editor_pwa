@@ -21,8 +21,33 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: './index.html',
         title: 'PWA Text Editor',
-      })
-    ],
+      }),
+      
+      new InjectManifest({
+        swSrc: './src/js/sw.js',
+        swDest: 'sw.js',
+      }),
+
+    new WebpackPwaManifest({
+      fingerprints: false,
+      inject: true,
+      name: 'PWA Text Editor',
+      short_name: 'PWA Text Editor',
+      description: 'A simple text editor that works offline',
+      background_color: '#ffffff',
+      theme_color: '#ffffff',
+      start_url: '/',
+      publicPath: '/',
+      icons: [
+        {
+          src: path.resolve('src/assets/icons/icon-512x512.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+          destination: path.join('assets', 'icons'),
+        },
+      ],
+    }),
+  ],
+    
 
     module: {
       rules: [
