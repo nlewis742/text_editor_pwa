@@ -24,8 +24,8 @@ module.exports = () => {
       }),
       
       new InjectManifest({
-        swSrc: './src/js/sw.js',
-        swDest: 'sw.js',
+        swSrc: './src-sw.js',
+        swDest: 'src.sw.js',
       }),
 
     new WebpackPwaManifest({
@@ -34,13 +34,13 @@ module.exports = () => {
       name: 'PWA Text Editor',
       short_name: 'PWA Text Editor',
       description: 'A simple text editor that works offline',
-      background_color: '#ffffff',
-      theme_color: '#ffffff',
+      background_color: '#225ca3',
+      theme_color: '#225ca3',
       start_url: '/',
       publicPath: '/',
       icons: [
         {
-          src: path.resolve('src/assets/icons/icon-512x512.png'),
+          src: path.resolve('src/images/logo.png'),
           sizes: [96, 128, 192, 256, 384, 512],
           destination: path.join('assets', 'icons'),
         },
@@ -56,13 +56,13 @@ module.exports = () => {
           use: ['style-loader', 'css-loader'],
         },
         {
-           test: /\.js$/,
+           test: /\.m?js$/,
            exclude: /node_modules/,
             use: {
               loader: 'babel-loader',
               options: {
                 presets: ['@babel/preset-env'],
-                plugins: ['@babel/plugin-transform-runtime', '@bable/plugin-proposal-object-rest-spread']
+                plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-proposal-object-rest-spread']
               }
           }
         }
