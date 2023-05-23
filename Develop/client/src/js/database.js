@@ -19,8 +19,10 @@ export const putDb = async (content) => {
   const db = await openDB('jate', 1);
   const tx = db.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  await store.put(content);
-  await tx.done;
+  // await store.put(content);
+  // await tx.done;
+  const request = store.put({id: 1, value: content});
+  const result = await request;
   console.log('added item to the store os');
 
 };
@@ -32,10 +34,13 @@ export const getDb = async () => {
   const db = await openDB('jate', 1);
   const tx = db.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  const content = await store.getAll();
-  await tx.done;
+  // const content = await store.getAll();
+  // await tx.done;
+  const request = store.get(1)
+  const result = await request;
   console.log('got all items from the store os');
-  return content;
+  // return content;
+  return result?.value
 
 
 };
